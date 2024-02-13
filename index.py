@@ -35,6 +35,12 @@ def handler(event, context):
         # Create a response body with the result
         response_body = {"application/json": {"body": str(body)}}
         response_code = 200
+    elif api_path == "/list_s3":
+        # Call the code_gen_tool from the tools module with the query
+        body = tools.list_s3(query)
+        # Create a response body with the result
+        response_body = {"application/json": {"body": str(body)}}
+        response_code = 200        
     else:
         # If the api path is not recognized, return an error message
         body = {"{}::{} is not a valid api, try another one.".format(action, api_path)}
